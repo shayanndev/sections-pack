@@ -17,12 +17,16 @@ function ResponsivePreview({ name, device }: { name: string; device: 'desktop'|'
     const measure = () => {
       const doc = iframe.contentDocument;
       if (!doc) return;
-      const update = () => setHeight(Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight));
+      const root = doc.body.querySelector<HTMLElement>('section, header, footer');
+      if (!root) return;
+      const update = () => {
+        const nextHeight = Math.ceil(root.getBoundingClientRect().height);
+        if (nextHeight > 0) setHeight(nextHeight);
+      };
       update();
       observer?.disconnect();
       observer = new ResizeObserver(update);
-      observer.observe(doc.body);
-      observer.observe(doc.documentElement);
+      observer.observe(root);
     };
 
     iframe.addEventListener('load', measure);
