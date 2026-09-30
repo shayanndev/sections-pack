@@ -7,12 +7,14 @@ type Entry = { name: keyof typeof Sections; category: string; code: string };
 
 function ResponsivePreview({ name, device }: { name: string; device: 'desktop'|'mobile' }) {
   const frame = useRef<HTMLIFrameElement>(null);
-  const [height, setHeight] = useState(360);
+  const mobileViewportHeight = 780;
+  const [height, setHeight] = useState(device === 'mobile' ? mobileViewportHeight : 360);
 
   useEffect(() => {
     const iframe = frame.current;
     if (!iframe) return;
     let observer: ResizeObserver | undefined;
+    setHeight(device === 'mobile' ? mobileViewportHeight : 360);
 
     const measure = () => {
       const doc = iframe.contentDocument;
@@ -21,7 +23,9 @@ function ResponsivePreview({ name, device }: { name: string; device: 'desktop'|'
       if (!root) return;
       const update = () => {
         const nextHeight = Math.ceil(root.getBoundingClientRect().height);
-        if (nextHeight > 0) setHeight(nextHeight);
+        if (nextHeight > 0) {
+          setHeight(device === 'mobile' ? Math.min(nextHeight, mobileViewportHeight) : nextHeight);
+        }
       };
       update();
       observer?.disconnect();
@@ -34,7 +38,7 @@ function ResponsivePreview({ name, device }: { name: string; device: 'desktop'|'
     return () => { iframe.removeEventListener('load', measure); observer?.disconnect(); };
   }, [name, device]);
 
-  return <iframe ref={frame} src={`/preview/${name}`} title={`${name} ${device} preview`} scrolling="no" className="block w-full border-0 bg-white" style={{height}}/>;
+  return <iframe ref={frame} src={`/preview/${name}`} title={`${name} ${device} preview`} scrolling={device === 'mobile' ? 'auto' : 'no'} className="block w-full border-0 bg-white" style={{height}}/>;
 }
 
 export default function PreviewGallery({ entries }: { entries: Entry[] }) {
