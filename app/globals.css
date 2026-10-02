@@ -2,7 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
+:root,
+[data-theme='indigo'] {
+  --color-primary: 79 70 229;
+  --color-primary-strong: 55 48 163;
+  --color-primary-soft: 238 242 255;
+  --color-on-primary: 255 255 255;
+  --color-accent: 217 70 239;
+  --color-accent-soft: 250 232 255;
+  --color-canvas: 255 255 255;
+  --color-surface: 255 255 255;
+  --color-surface-muted: 244 244 245;
+  --color-ink: 24 24 27;
+  --color-muted: 82 82 91;
+  --color-subtle: 161 161 170;
+  --color-line: 228 228 231;
+  --color-inverse: 9 9 11;
+  --color-inverse-text: 250 250 250;
+  --color-inverse-muted: 161 161 170;
+  --color-inverse-line: 63 63 70;
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-serif: Georgia, Cambria, 'Times New Roman', serif;
+  --font-mono: 'SFMono-Regular', Consolas, monospace;
+  --radius: 1rem;
+}
+
+[data-theme='emerald'] {
+  --color-primary: 5 150 105;
+  --color-primary-strong: 4 120 87;
+  --color-primary-soft: 209 250 229;
+  --color-accent: 14 165 233;
+  --color-accent-soft: 224 242 254;
+}
+
+[data-theme='rose'] {
+  --color-primary: 225 29 72;
+  --color-primary-strong: 190 18 60;
+  --color-primary-soft: 255 228 230;
+  --color-accent: 249 115 22;
+  --color-accent-soft: 255 237 213;
+}
+
+[data-theme='mono'] {
+  --color-primary: 39 39 42;
+  --color-primary-strong: 9 9 11;
+  --color-primary-soft: 228 228 231;
+  --color-accent: 113 113 122;
+  --color-accent-soft: 244 244 245;
+}
+
+.dark {
+  --color-canvas: 9 9 11;
+  --color-surface: 24 24 27;
+  --color-surface-muted: 39 39 42;
+  --color-ink: 250 250 250;
+  --color-muted: 212 212 216;
+  --color-subtle: 161 161 170;
+  --color-line: 63 63 70;
+  --color-primary-soft: 49 46 129;
+  --color-accent-soft: 88 28 135;
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: #f4f4f5; color: #18181b; }
-button, a { -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: rgb(var(--color-canvas)); color: rgb(var(--color-ink)); }
+button, a, summary { -webkit-tap-highlight-color: transparent; }
+button, a, summary, input { border-radius: var(--radius); }
+:focus-visible { outline: 3px solid rgb(var(--color-primary)); outline-offset: 3px; }
+::selection { background: rgb(var(--color-primary)); color: rgb(var(--color-on-primary)); }

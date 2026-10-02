@@ -8,6 +8,7 @@
 # local tooling
 *.tsbuildinfo
 .env*
+!.env.example
 
 # logs
 npm-debug.log*

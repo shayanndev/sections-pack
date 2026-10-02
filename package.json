@@ -1,1 +1,32 @@
-{"scripts":{"dev":"next dev","build":"next build","start":"next start"},"dependencies":{"@types/node":"latest","@types/react":"latest","@types/react-dom":"latest","autoprefixer":"latest","next":"latest","postcss":"latest","react":"latest","react-dom":"latest","tailwindcss":"^3.4.17","typescript":"latest"},"devDependencies":{}}
+{
+  "name": "sections-pack",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "previews": "tsx scripts/generate-previews.ts",
+    "package": "node scripts/package.mjs"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "archiver": "^7.0.1",
+    "autoprefixer": "latest",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "latest",
+    "playwright": "^1.56.0",
+    "postcss": "latest",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.20.0",
+    "typescript": "latest"
+  }
+}
